@@ -11,7 +11,7 @@ const Login = ({handleSubmit, handleChange, username, password}) => {
                     <input
                         value={username}
                         onChange={handleChange}
-                        name="username"
+                        name="email"
                     />
                 </div>
                 <div>
