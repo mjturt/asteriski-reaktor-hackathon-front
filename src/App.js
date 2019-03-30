@@ -17,7 +17,8 @@ class App extends React.Component {
             username: '',
             password: '',
             user: null,
-            loggedIn: false
+            loggedIn: false,
+            admin: false
         }
     }
 
@@ -84,7 +85,7 @@ class App extends React.Component {
     }
 
 
-    hello = (status, reg) => {
+    stateHandler = (status, reg) => {
         const isIn = status
         const signUp = reg
         if (signUp) {
@@ -110,12 +111,15 @@ class App extends React.Component {
                            password={this.state.password}
                            handleChange={this.handleLoginFieldChange}
                            handleSubmit={this.login}
+                           handleAdmin={this.toggleAdmin}
                     />
                     <div>
                         If you instead want to sign up, click
                         <button
                             type="button"
-                            style={buttonStyle} onClick={this.handleRegisterButton}>here
+                            style={buttonStyle}
+                            onClick={this.handleRegisterButton}
+                        >here
                         </button>
                     </div>
                 </div>
@@ -123,13 +127,16 @@ class App extends React.Component {
         }
     }
 
+    toggleAdmin = () => {
+        this.setState({admin: !this.state.admin})
+    }
 
     render() {
         console.log('render called')
         return (
             <div className="App">
                 <header className="App-header">
-                    {this.hello(this.state.loggedIn, this.state.register)}
+                    {this.stateHandler(this.state.loggedIn, this.state.register)}
                 </header>
             </div>
         );

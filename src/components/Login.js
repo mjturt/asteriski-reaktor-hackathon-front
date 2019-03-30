@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Login = ({handleSubmit, handleChange, username, password}) => {
+const Login = ({handleSubmit, handleChange, username, password, handleAdmin}) => {
     return (
         <div>
             <h2>Login</h2>
@@ -23,10 +23,19 @@ const Login = ({handleSubmit, handleChange, username, password}) => {
                         onChange={handleChange}
                     />
                 </div>
+                <button type="button" onClick={handleAdmin} style={buttonStyle}>Admin login here</button>
                 <button type="submit">Enter the void</button>
             </form>
         </div>
     )
+}
+const buttonStyle = {
+    background: 'none',
+    color: 'inherit',
+    padding: '0!important',
+    font: 'inherit',
+    fontWeight: '800',
+    border: 'none'
 }
 
 Login.propTypes = {
