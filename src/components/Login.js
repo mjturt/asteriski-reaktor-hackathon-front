@@ -4,11 +4,14 @@ import PropTypes from 'prop-types'
 const Login = ({handleSubmit, handleChange, username, password, handleAdmin, isAdmin}) => {
     return (
         <div>
+            <h1>Node.js React Customer Register App</h1>
+                    <p>Asteriski and Reaktor hackathon 2019</p>
+                    <div class="jumbotron">
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     Username:
-                    <input
+                    <input class="form-control"
                         value={username}
                         onChange={handleChange}
                         name="email"
@@ -16,13 +19,14 @@ const Login = ({handleSubmit, handleChange, username, password, handleAdmin, isA
                 </div>
                 <div>
                     Password:
-                    <input
+                    <input class="form-control"
                         type="password"
                         name="password"
                         value={password}
                         onChange={handleChange}
                     />
                 </div>
+                <button type="submit" class="btn">Enter the void</button>
                 {isAdmin &&
                 <button type="button" onClick={handleAdmin} style={buttonStyle}>Return to user login</button>
                 }
@@ -30,9 +34,9 @@ const Login = ({handleSubmit, handleChange, username, password, handleAdmin, isA
                 <button type="button" onClick={handleAdmin} style={buttonStyle}>Admin login here</button>
                 }
 
-                <button type="submit">Enter the void</button>
             </form>
         </div>
+    </div>
     )
 }
 const buttonStyle = {
