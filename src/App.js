@@ -63,8 +63,9 @@ class App extends React.Component {
 
         try {
             console.log(this.state)
+            console.log('Date now: ' + Date.now())
             const user = await reghelper.register( {
-                idx:'',
+                idx:Math.floor(Math.random() * 100000000),
                 email: this.state.email,
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
