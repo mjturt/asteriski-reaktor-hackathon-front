@@ -105,7 +105,7 @@ class App extends React.Component {
         } else {
             return (
                 <div>
-                    <Login username={this.state.username}
+                    <Login username={this.state.email}
                            password={this.state.password}
                            handleChange={this.handleLoginFieldChange}
                            handleSubmit={this.login}
