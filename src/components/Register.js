@@ -6,7 +6,6 @@ const Register = ({fname, lname, email, password, uname, handleChange, handleSub
     return(
         <div>
             <h2>Register</h2>
-            {console.log(handleChange())}
             <form onSubmit={handleSubmit}>
                 <div>
                     First name:

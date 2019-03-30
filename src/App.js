@@ -62,9 +62,23 @@ class App extends React.Component {
         event.preventDefault()
 
         try {
+            console.log(this.state)
             const user = await reghelper.register( {
-                
+                idx:'',
+                email: this.state.email,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                password: this.state.password,
+                bonuspoints: 0,
+                memberSince: Date.now()
             })
+        } catch (exception) {
+            this.setState( {
+                error: 'something went wrong'
+            })
+            setTimeout( () => {
+                this.setState({error: null})
+            }, 5000)
         }
     }
 
@@ -80,7 +94,7 @@ class App extends React.Component {
                              email={this.state.email}
                              password={this.state.password}
                              uname={this.state.username}
-                             handleChange={this.handleLoginFieldChange()}
+                             handleChange={this.handleLoginFieldChange}
                              handleSubmit={this.registerNew}
 
             />
