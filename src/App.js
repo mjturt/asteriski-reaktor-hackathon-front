@@ -33,22 +33,42 @@ class App extends React.Component {
 
     login = async (event) => {
         event.preventDefault()
-        //this.setState({loggedIn: true})
-        try {
-            const user = await loginService.login({
-                email: this.state.email,
-                password: this.state.password
-            })
-            window.localStorage.setItem('auhtedUser', JSON.stringify(user))
-            this.setState({username: '', password: '', user, loggedIn: true})
-        } catch (exception) {
-            this.setState({
-                error: 'käyttäjätunnus tai salasana virheellinen',
-            })
-            setTimeout(() => {
-                this.setState({error: null})
-            }, 5000)
+
+        if (this.state.admin) {
+            try {
+                const user = await loginService.loginAdmin({
+                    email: this.state.email,
+                    password: this.state.password
+                })
+                window.localStorage.setItem('authedUser', JSON.stringify(user))
+                this.setState({username: '', password: '', user, loggedIn: true})
+            } catch (exception) {
+                this.setState({
+                    error: 'sumthin went wrong'
+                })
+                setTimeout(() => {
+                    this.setState({error: null})
+                }, 5000)
+            }
+        } else {
+            try {
+                const user = await loginService.login({
+                    email: this.state.email,
+                    password: this.state.password
+                })
+                window.localStorage.setItem('auhtedUser', JSON.stringify(user))
+                this.setState({username: '', password: '', user, loggedIn: true})
+            } catch (exception) {
+                this.setState({
+                    error: 'käyttäjätunnus tai salasana virheellinen',
+                })
+                setTimeout(() => {
+                    this.setState({error: null})
+                }, 5000)
+            }
         }
+
+
     }
 
     handleLoginFieldChange = (event) => {
@@ -56,7 +76,7 @@ class App extends React.Component {
     }
 
     handleRegisterButton = (event) => {
-        this.setState( {register: true})
+        this.setState({register: true})
     }
 
     registerNew = async (event) => {
@@ -65,8 +85,8 @@ class App extends React.Component {
         try {
             console.log(this.state)
             console.log('Date now: ' + Date.now())
-            const user = await reghelper.register( {
-                idx:Math.floor(Math.random() * 100000000),
+            const user = await reghelper.register({
+                idx: Math.floor(Math.random() * 100000000),
                 email: this.state.email,
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
@@ -75,10 +95,10 @@ class App extends React.Component {
                 memberSince: Date.now()
             })
         } catch (exception) {
-            this.setState( {
+            this.setState({
                 error: 'something went wrong'
             })
-            setTimeout( () => {
+            setTimeout(() => {
                 this.setState({error: null})
             }, 5000)
         }
@@ -107,12 +127,16 @@ class App extends React.Component {
         } else {
             return (
                 <div>
-                    <Login username={this.state.email}
-                           password={this.state.password}
-                           handleChange={this.handleLoginFieldChange}
-                           handleSubmit={this.login}
-                           handleAdmin={this.toggleAdmin}
-                    />
+                    <div>
+                        <Login username={this.state.email}
+                               password={this.state.password}
+                               handleChange={this.handleLoginFieldChange}
+                               handleSubmit={this.login}
+                               handleAdmin={this.toggleAdmin}
+                               isAdmin={this.state.admin}
+                        />
+                    </div>
+                    {!this.state.admin &&
                     <div>
                         If you instead want to sign up, click
                         <button
@@ -122,6 +146,7 @@ class App extends React.Component {
                         >here
                         </button>
                     </div>
+                    }
                 </div>
             )
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Login = ({handleSubmit, handleChange, username, password, handleAdmin}) => {
+const Login = ({handleSubmit, handleChange, username, password, handleAdmin, isAdmin}) => {
     return (
         <div>
             <h2>Login</h2>
@@ -23,7 +23,13 @@ const Login = ({handleSubmit, handleChange, username, password, handleAdmin}) =>
                         onChange={handleChange}
                     />
                 </div>
+                {isAdmin &&
+                <button type="button" onClick={handleAdmin} style={buttonStyle}>Return to user login</button>
+                }
+                {!isAdmin &&
                 <button type="button" onClick={handleAdmin} style={buttonStyle}>Admin login here</button>
+                }
+
                 <button type="submit">Enter the void</button>
             </form>
         </div>
