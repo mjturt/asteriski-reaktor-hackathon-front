@@ -85,9 +85,7 @@ class App extends React.Component {
 
 
     hello = (status, reg) => {
-        console.log('hello called')
         const isIn = status
-        console.log(status.loggedIn)
         const signUp = reg
         if (signUp) {
             return <Register fname={this.state.firstName}
@@ -101,7 +99,10 @@ class App extends React.Component {
             />
         }
         if (isIn) {
-            return new Personal({name: 'nimi', joinDate: 1111})
+            console.log(this.state.firstName)
+            return <Personal
+                user={this.state.user}
+            />
         } else {
             return (
                 <div>
