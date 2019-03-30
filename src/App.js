@@ -35,7 +35,7 @@ class App extends React.Component {
         //this.setState({loggedIn: true})
         try {
             const user = await loginService.login({
-                username: this.state.email,
+                email: this.state.email,
                 password: this.state.password
             })
             window.localStorage.setItem('auhtedUser', JSON.stringify(user))
